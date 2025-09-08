@@ -26,4 +26,4 @@ jobs:
         run: dotnet test --configuration Release --no-build
 
       - name: Format
-        run: dotnet format --verbosity detailed --verify-no-changes
+        run: dotnet format --verify-no-changes --verbosity detailed --no-restore
