@@ -9,7 +9,7 @@ public class ProductsController : ControllerBase
     [HttpGet]
     public IActionResult GetProducts()
     {
-        var products = new List<string> { "Product1", "Product2", "Product3" };
+        var products = new List<string> { "Product1", "Product2" };
 
         return Ok(products);
     }
