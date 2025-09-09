@@ -35,27 +35,10 @@ jobs:
           name: api-artifact
           path: artifacts/
 
-  deploy-dev:
-    name: Deploy Dev
-    runs-on: ubuntu-latest
+  deploy_dev:
+    name: Deploy dev
     needs: build
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: api-artifact
-          path: artifacts/
-
-      - name: Azure login
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: app-githubactions-dev
-          package: artifacts/
+    uses: ./.github/workflows/step-deploy.yml
+    with:
+      env: dev
+    secrets: inherit
